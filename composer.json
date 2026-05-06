@@ -1,0 +1,17 @@
+{
+    "name": "allanrodrigues/app",
+    "description": "Project Checkout payment",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Allan Rodrigues"
+        }
+    ],
+    "require": {}
+}
