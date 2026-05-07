@@ -6,16 +6,20 @@ use App\Providers\StripePaymentProviders;
 
 class Checkout
 {
+    public  StripePaymentProviders $stripePaymentProviders;
+
     public function __construct(
         public string $email,
-        public string $amount
+        public int $amount
     )
     {
+        $this->stripePaymentProviders = new StripePaymentProviders();
     }
 
     public function process(): string
     {
-        $paymentProvider = new StripePaymentProviders();
-        return $paymentProvider->charge($this->email, number_format($this->amount, 2, ",", "."));
+        return $this->stripePaymentProviders->charge($this->email, number_format($this->amount, 2, '.', ''));
     }
+
+
 }
