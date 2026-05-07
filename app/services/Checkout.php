@@ -11,7 +11,6 @@ class Checkout
         public string $amount
     )
     {
-
     }
 
     public function process(): string
