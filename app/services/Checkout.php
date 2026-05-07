@@ -10,7 +10,7 @@ class Checkout
 
     public function __construct(
         public string $email,
-        public int $amount
+        public string $amount
     )
     {
         $this->stripePaymentProviders = new StripePaymentProviders();
@@ -18,8 +18,11 @@ class Checkout
 
     public function process(): string
     {
-        return $this->stripePaymentProviders->charge($this->email, number_format($this->amount, 2, '.', ''));
+        return $this->stripePaymentProviders->charge($this->email, $this->formatedNumber());
     }
 
-
+    private function formatedNumber(): string
+    {
+        return number_format($this->amount, 2, ',', '.');
+    }
 }
