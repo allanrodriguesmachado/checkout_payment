@@ -4,6 +4,5 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\services\Checkout;
 
-$checkout = new Checkout('allan@php.com', 500);
-$checkout->process();
-return $checkout;
+$checkout = new Checkout('allan@php.com', 5000);
+echo $checkout->process();

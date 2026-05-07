@@ -4,8 +4,8 @@ namespace App\Providers;
 
 class StripePaymentProviders
 {
-    public function charge(string $email, int $amount): string
+    public function charge(string $email, string $amount): string
     {
-        return "Payment success {$email} R$ {$amount}";
+        return "Success Payment {$email} for amount {$amount}";
     }
 }

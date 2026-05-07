@@ -1,24 +1,22 @@
 <?php
 
 namespace App\services;
+
 use App\Providers\StripePaymentProviders;
 
 class Checkout
 {
-    public function __invoke(): string
+    public function __construct(
+        public string $email,
+        public string $amount
+    )
     {
-        echo "Hello world";
+
     }
-//    public function __construct(
-//        public string $email,
-//        public int    $amount
-//    )
-//    {
-//    }
-//
-//    public function processPayment(): void
-//    {
-//        $stripPayment = new StripePaymentProviders();
-//        $stripPayment->charge($this->email, $this->amount);
-//    }
+
+    public function process(): string
+    {
+        $paymentProvider = new StripePaymentProviders();
+        return $paymentProvider->charge($this->email, number_format($this->amount, 2, ",", "."));
+    }
 }
