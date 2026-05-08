@@ -2,7 +2,9 @@
 
 namespace App\services;
 
+use App\Providers\interfaces\PaymentProviderContract;
 use App\Providers\StripePaymentProviders;
+use App\Utils\Https;
 
 class Checkout
 {
@@ -13,12 +15,11 @@ class Checkout
         public string $amount
     )
     {
-        $this->stripePaymentProviders = new StripePaymentProviders();
     }
 
-    public function process(): string
+    public function process(PaymentProviderContract $paymentProviderContract): string
     {
-        return $this->stripePaymentProviders->charge($this->email, $this->formatedNumber());
+        return $paymentProviderContract->charge($this->email, $this->formatedNumber());
     }
 
     private function formatedNumber(): string
